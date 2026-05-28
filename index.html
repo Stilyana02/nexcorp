@@ -1,788 +1,811 @@
 <!DOCTYPE html>
-<html>
+<html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <!-- ГРЕШКА: Липсва viewport meta tag -->
-  <title>NexCorp</title>
-  <!-- ГРЕШКА: Липсва lang атрибут в <html> -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexCorp - Достъпен корпоративен сайт</title>
 
-    body {
-      font-family: 'Lato', sans-serif;
-      background: #1a1a2e;
-      color: #c0c0c8; /* ГРЕШКА: Нисък контраст */
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
-    /* NAV */
-    .navbar {
-      background: #16213e;
-      padding: 18px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    body {
+      font-family: Arial, Verdana, sans-serif;
+      background: #10182f;
+      color: #f2f2f2;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    a,
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 4px solid #ffcc00;
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      background: #ffcc00;
+      color: #000;
+      padding: 10px 15px;
+      z-index: 999;
+      font-weight: bold;
+    }
+
+    .skip-link:focus {
+      left: 10px;
+    }
+
+    header {
+      background: #07112b;
+      padding: 20px 60px;
       position: sticky;
       top: 0;
       z-index: 100;
+      border-bottom: 2px solid #ffcc00;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      color: #e94560;
-      letter-spacing: 3px;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 35px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #8888aa; /* ГРЕШКА: Контраст ~2.1:1 */
+      color: #ffcc00;
+      font-size: 28px;
+      font-weight: bold;
       text-decoration: none;
-      font-size: 13px;
       letter-spacing: 2px;
-      text-transform: uppercase;
-      /* ГРЕШКА: Липсва :focus стил */
     }
-    .nav-links a:hover { color: #e94560; }
 
-    /* HERO */
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 10px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: #ffcc00;
+      color: #000;
+      border-radius: 4px;
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 80px 60px;
+    }
+
     .hero {
-      min-height: 92vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
-      padding: 0 60px;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(135deg, #10182f, #0d2b52);
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
-      top: -100px; right: -100px;
-      border-radius: 50%;
+
+    .hero-content {
+      max-width: 800px;
     }
-    .hero-content { max-width: 650px; z-index: 1; }
+
     .hero-tag {
-      font-size: 10px; /* ГРЕШКА: Малък шрифт */
-      letter-spacing: 4px;
-      color: #e94560;
+      color: #ffcc00;
+      font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 64px;
-      line-height: 1.1;
-      color: #eee8e0;
-      margin-bottom: 24px;
+
+    h1 {
+      font-size: 54px;
+      line-height: 1.2;
+      margin-bottom: 25px;
+      color: #ffffff;
     }
-    .hero h1 span { color: #e94560; }
+
+    h1 span {
+      color: #ffcc00;
+    }
+
+    h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: #ffcc00;
+    }
+
+    h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #f2f2f2;
+    }
+
     .hero p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #7a7a99; /* ГРЕШКА: Контраст ~2.8:1 */
-      margin-bottom: 40px;
-      max-width: 500px;
+      max-width: 650px;
+      font-size: 20px;
     }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .submit-btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
 
     .btn-primary {
-      background: #e94560;
-      color: #fff;
-      padding: 14px 32px;
-      border: none;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-block;
-      /* ГРЕШКА: Липсва :focus стил */
+      background: #ffcc00;
+      color: #000;
     }
-    .btn-primary:hover { background: #c73550; }
+
+    .btn-primary:hover {
+      background: #ffffff;
+      color: #000;
+    }
 
     .btn-secondary {
       background: transparent;
-      color: #aaaacc; /* ГРЕШКА: Нисък контраст */
-      padding: 14px 32px;
-      border: 1px solid #333355;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-block;
+      color: #ffffff;
+      border: 2px solid #ffcc00;
     }
-    .btn-secondary:hover { border-color: #e94560; color: #e94560; }
 
-    /* STATS */
+    .btn-secondary:hover {
+      background: #ffcc00;
+      color: #000;
+    }
+
     .stats {
-      background: #16213e;
+      background: #07112b;
       padding: 50px 60px;
       display: flex;
-      gap: 40px;
+      gap: 30px;
       justify-content: space-around;
       flex-wrap: wrap;
     }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      color: #e94560;
-    }
-    .stat-label {
-      font-size: 9px; /* ГРЕШКА: Малък шрифт */
-      color: #555577; /* ГРЕШКА: Нисък контраст */
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-top: 6px;
+
+    .stat-item {
+      text-align: center;
+      min-width: 180px;
     }
 
-    /* SERVICES */
-    .services {
-      padding: 100px 60px;
-      background: #1a1a2e;
-    }
-    .section-header { text-align: center; margin-bottom: 70px; }
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
+    .stat-num {
       font-size: 42px;
-      color: #eee8e0;
-      margin-bottom: 16px;
+      color: #ffcc00;
+      font-weight: bold;
     }
-    .section-header p {
-      color: #666688; /* ГРЕШКА: Нисък контраст */
-      font-size: 15px;
-      max-width: 500px;
-      margin: 0 auto;
+
+    .stat-label {
+      font-size: 18px;
+      color: #ffffff;
     }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+    }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      max-width: 1100px;
+      max-width: 1150px;
       margin: 0 auto;
-    }
-    .service-card {
-      background: #16213e;
-      padding: 40px 30px;
-      border: 1px solid #1e2a4a;
-      transition: border-color 0.3s, transform 0.2s;
-      cursor: pointer;
-      /* ГРЕШКА: Без role или keyboard focus */
-    }
-    .service-card:hover { border-color: #e94560; transform: translateY(-4px); }
-    .service-icon {
-      width: 50px; height: 50px;
-      background: rgba(233,69,96,0.15);
-      border-radius: 8px;
-      margin-bottom: 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      /* ГРЕШКА: Без aria-hidden */
-    }
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      color: #ddd8d0;
-      margin-bottom: 12px;
-    }
-    .service-card p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #666688; /* ГРЕШКА: Нисък контраст */
     }
 
-    /* ABOUT */
-    .about-wrap { background: #16213e; padding: 100px 60px; }
+    .service-card {
+      background: #07112b;
+      padding: 35px;
+      border: 2px solid #31456e;
+      border-radius: 10px;
+    }
+
+    .service-card:hover {
+      border-color: #ffcc00;
+    }
+
+    .service-icon {
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    .about-wrap {
+      background: #07112b;
+    }
+
     .about {
       display: flex;
-      gap: 80px;
       align-items: center;
-      max-width: 1200px;
+      gap: 50px;
+      max-width: 1150px;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
+
     .about-img {
-      width: 460px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, #0f3460, #e94560);
-      height: 380px;
-      border-radius: 2px;
+      flex: 1;
+      min-width: 280px;
+      min-height: 300px;
+      background: linear-gradient(135deg, #0d2b52, #ffcc00);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 80px;
     }
-    .about-text h4 { /* ГРЕШКА: h4 вместо h2 */
-      font-family: 'Playfair Display', serif;
-      font-size: 38px;
-      color: #eee8e0;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-    .about-text p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #666688; /* ГРЕШКА: Нисък контраст */
-      margin-bottom: 16px;
+
+    .about-text {
+      flex: 1;
+      min-width: 280px;
     }
 
-    /* TEAM */
-    .team { padding: 100px 60px; background: #1a1a2e; }
     .team-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 1100px;
+      gap: 25px;
+      max-width: 1150px;
       margin: 0 auto;
     }
-    .team-card { text-align: center; cursor: pointer; }
+
+    .team-card {
+      background: #07112b;
+      border: 2px solid #31456e;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
     .team-photo {
-      width: 100%;
-      aspect-ratio: 1;
-      margin-bottom: 16px;
-      display: flex; align-items: center; justify-content: center;
       font-size: 60px;
-      transition: opacity 0.2s;
+      margin-bottom: 15px;
     }
-    .team-card:hover .team-photo { opacity: 0.8; }
-    .team-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: #ddd8d0;
-      margin-bottom: 4px;
-    }
+
     .team-card span {
-      font-size: 11px; /* ГРЕШКА: Малък шрифт */
-      color: #555577; /* ГРЕШКА: Нисък контраст */
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      color: #ffcc00;
+      font-weight: bold;
     }
 
-    /* CONTACT */
-    .contact { padding: 100px 60px; background: #16213e; }
-    .contact-inner { max-width: 700px; margin: 0 auto; }
-    .form-group { margin-bottom: 24px; }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      background: #1a1a2e;
-      border: 1px solid #2a2a4a;
-      padding: 14px 18px;
-      color: #ccc;
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      outline: none; /* ГРЕШКА: Невидим фокус */
-      transition: border-color 0.2s;
+    .contact {
+      background: #07112b;
     }
-    .form-group input:focus,
-    .form-group textarea:focus { border-color: #e94560; }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: #444466; /* ГРЕШКА: Нисък контраст */
-    }
-    .form-group textarea { height: 130px; resize: vertical; }
-    .form-row { display: flex; gap: 16px; }
-    .form-row .form-group { flex: 1; }
-    .submit-btn {
-      background: #e94560;
-      color: #fff;
-      border: none;
-      padding: 15px 40px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      cursor: pointer;
-      width: 100%;
-      /* ГРЕШКА: Без :focus стил, без type="submit" */
-    }
-    .submit-btn:hover { background: #c73550; }
 
-    /* FOOTER */
-    .footer-wrap {
-      background: #0d0d1a;
-      padding: 40px 60px;
-      text-align: center;
+    .contact-inner {
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .footer-links {
+
+    form {
+      margin-top: 40px;
+    }
+
+    .form-row {
       display: flex;
-      justify-content: center;
-      gap: 30px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 250px;
       margin-bottom: 20px;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 11px; /* ГРЕШКА: Малък шрифт */
-      color: #444466; /* ГРЕШКА: Нисък контраст */
-      text-decoration: none;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .footer-links a:hover { color: #e94560; }
-    .footer-wrap p {
-      font-size: 11px;
-      color: #333355; /* ГРЕШКА: Много нисък контраст */
-      letter-spacing: 2px;
     }
 
-    /* TICKER */
-    .ticker {
-      background: #e94560;
-      padding: 10px 0;
-      overflow: hidden;
-      /* ГРЕШКА: Без prefers-reduced-motion */
-    }
-    .ticker-inner {
-      display: flex;
-      animation: ticker 18s linear infinite;
-      white-space: nowrap;
-    }
-    .ticker-inner span {
-      font-size: 10px; /* ГРЕШКА: Малък шрифт */
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 0 40px;
-      color: rgba(255,255,255,0.7); /* ГРЕШКА: Нисък контраст */
-    }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
     }
 
-    /* MODAL */
-    .modal-overlay {
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ffffff;
+      border-radius: 5px;
+      background: #ffffff;
+      color: #000;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #ffcc00;
+      color: #000;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background: #ffffff;
+    }
+
+    .success-msg,
+    .error-msg {
       display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      font-weight: bold;
     }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: #16213e;
-      border: 1px solid #e94560;
-      padding: 50px;
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-      text-align: center;
-    }
-    .modal-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: #eee8e0;
-      margin-bottom: 16px;
-    }
-    .modal-box p {
-      color: #7a7a99;
-      font-size: 15px;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 20px;
-      font-size: 22px;
-      color: #888;
-      cursor: pointer;
-      background: none;
-      border: none;
-      /* ГРЕШКА: Без aria-label */
-    }
-    .modal-close:hover { color: #e94560; }
 
-    /* SUCCESS MESSAGE */
     .success-msg {
-      display: none;
-      background: rgba(233,69,96,0.15);
-      border: 1px solid #e94560;
-      color: #e94560;
-      padding: 16px;
-      text-align: center;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-top: 16px;
+      background: #d4edda;
+      color: #155724;
+      border: 2px solid #155724;
     }
-    .success-msg.show { display: block; }
 
-    /* SCROLL ANIMATION */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .error-msg {
+      background: #f8d7da;
+      color: #721c24;
+      border: 2px solid #721c24;
     }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    footer {
+      background: #020817;
+      padding: 35px 60px;
+      text-align: center;
+      border-top: 2px solid #ffcc00;
+    }
+
+    footer ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      color: #ffcc00;
+    }
+
+    .accessibility-tools {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #020817;
+      border: 2px solid #ffcc00;
+      padding: 15px;
+      border-radius: 8px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .accessibility-tools button {
+      background: #ffcc00;
+      color: #000;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .high-contrast {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .high-contrast header,
+    .high-contrast section,
+    .high-contrast footer,
+    .high-contrast .stats,
+    .high-contrast .service-card,
+    .high-contrast .team-card,
+    .high-contrast .contact {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .high-contrast h1,
+    .high-contrast h2,
+    .high-contrast h3,
+    .high-contrast p,
+    .high-contrast a,
+    .high-contrast label {
+      color: #ffffff;
+    }
+
+    .high-contrast .btn-primary,
+    .high-contrast .submit-btn,
+    .high-contrast .accessibility-tools button {
+      background: #ffff00;
+      color: #000000;
+    }
+
+    @media (max-width: 900px) {
+      header,
+      section,
+      .stats,
+      footer {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .services-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .accessibility-tools {
+        position: static;
+        margin: 20px;
+      }
+    }
   </style>
 </head>
-<!-- ГРЕШКА: Липсва lang атрибут -->
+
 <body>
 
-  <!-- ГРЕШКА: Няма skip link -->
+  <a href="#main-content" class="skip-link">Прескочи към основното съдържание</a>
 
-  <!-- НАВИГАЦИЯ — ГРЕШКА: <div> вместо <nav> -->
-  <div class="navbar">
-    <!-- ГРЕШКА: <div> вместо <a> за логото -->
-    <div class="logo" onclick="scrollToSection('home')">NEXCORP</div>
-    <ul class="nav-links">
-      <li><a href="#home" onclick="scrollToSection('home'); return false;">Начало</a></li>
-      <li><a href="#services" onclick="scrollToSection('services'); return false;">Услуги</a></li>
-      <li><a href="#about" onclick="scrollToSection('about'); return false;">За нас</a></li>
-      <li><a href="#team" onclick="scrollToSection('team'); return false;">Екип</a></li>
-      <li><a href="#contact" onclick="scrollToSection('contact'); return false;">Контакт</a></li>
+  <header>
+    <div class="navbar">
+      <a href="#home" class="logo" aria-label="Начална страница на NexCorp">NEXCORP</a>
+
+      <nav aria-label="Основна навигация">
+        <ul>
+          <li><a href="#home">Начало</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#about">За нас</a></li>
+          <li><a href="#team">Екип</a></li>
+          <li><a href="#contact">Контакт</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section id="home" class="hero" aria-labelledby="main-title">
+      <div class="hero-content">
+        <p class="hero-tag">Бизнес консултации и стратегия</p>
+        <h1 id="main-title">Изграждаме <span>бъдещето</span> на бизнеса</h1>
+        <p>
+          Работим с компании за трансформация на техните бизнес модели,
+          оптимизация на процеси и постигане на устойчив растеж.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#services" class="btn-primary">Разгледай услугите</a>
+          <a href="#about" class="btn-secondary">Научи повече за нас</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Статистика за компанията">
+      <div class="stat-item">
+        <div class="stat-num">340+</div>
+        <div class="stat-label">Клиента</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-num">18</div>
+        <div class="stat-label">Години опит</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-num">92%</div>
+        <div class="stat-label">Успеваемост</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Награди</div>
+      </div>
+    </section>
+
+    <section id="services" aria-labelledby="services-title">
+      <div class="section-header">
+        <h2 id="services-title">Нашите услуги</h2>
+        <p>
+          Предлагаме цялостни решения за корпоративна трансформация,
+          развитие и устойчив растеж.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">📊</div>
+          <h3>Бизнес анализ</h3>
+          <p>
+            Анализираме бизнес процесите и откриваме възможности за оптимизация.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🚀</div>
+          <h3>Стратегическо планиране</h3>
+          <p>
+            Разработваме стратегии за устойчив растеж и по-добро пазарно позициониране.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">💡</div>
+          <h3>Дигитална трансформация</h3>
+          <p>
+            Подпомагаме внедряването на съвременни технологии и дигитални решения.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🤝</div>
+          <h3>M&amp;A консултации</h3>
+          <p>
+            Оказваме подкрепа при сливания, придобивания и преструктуриране.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">📈</div>
+          <h3>Финансово оптимизиране</h3>
+          <p>
+            Анализираме финансови потоци, разходи и инвестиционни стратегии.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🌍</div>
+          <h3>Международна експанзия</h3>
+          <p>
+            Създаваме стратегии за навлизане на нови международни пазари.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about" class="about-wrap" aria-labelledby="about-title">
+      <div class="about">
+        <div class="about-img" aria-hidden="true">🏢</div>
+
+        <div class="about-text">
+          <h2 id="about-title">18 години върхови резултати</h2>
+          <p>
+            NexCorp е консултантска компания с присъствие в 12 държави.
+            Екипът ни работи за постигане на измерими резултати и устойчив растеж.
+          </p>
+          <p>
+            Нашият подход съчетава анализ, стратегия и практически приложими решения.
+          </p>
+          <a href="#contact" class="btn-primary">Свържете се с нас</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" aria-labelledby="team-title">
+      <div class="section-header">
+        <h2 id="team-title">Нашият екип</h2>
+        <p>Запознайте се с част от специалистите зад NexCorp.</p>
+      </div>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <div class="team-photo" aria-hidden="true">👤</div>
+          <h3>Александър Петров</h3>
+          <span>CEO и основател</span>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo" aria-hidden="true">👤</div>
+          <h3>Мария Иванова</h3>
+          <span>Chief Strategy Officer</span>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo" aria-hidden="true">👤</div>
+          <h3>Георги Стоянов</h3>
+          <span>Head of Digital</span>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo" aria-hidden="true">👤</div>
+          <h3>Елена Димитрова</h3>
+          <span>CFO</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div class="section-header">
+          <h2 id="contact-title">Свържете се с нас</h2>
+          <p>Попълнете формата и нашият екип ще се свърже с вас.</p>
+        </div>
+
+        <form onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Вашето име *</label>
+              <input type="text" id="fname" name="fname" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Компания</label>
+              <input type="text" id="company" name="company">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Имейл адрес *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Телефон</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Вашето съобщение *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Изпрати съобщение</button>
+
+          <div class="success-msg" id="successMsg" aria-live="polite">
+            Съобщението е изпратено успешно.
+          </div>
+
+          <div class="error-msg" id="errorMsg" aria-live="assertive">
+            Моля, попълнете задължителните полета.
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <ul>
+      <li><a href="#home">Начало</a></li>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#about">За нас</a></li>
+      <li><a href="#contact">Контакт</a></li>
     </ul>
-  </div>
 
-  <!-- TICKER — ГРЕШКА: Без aria-hidden -->
-  <div class="ticker">
-    <div class="ticker-inner">
-      <span>Иновации &nbsp;◆&nbsp; Стратегия &nbsp;◆&nbsp; Растеж &nbsp;◆&nbsp; Трансформация &nbsp;◆&nbsp; Лидерство &nbsp;◆&nbsp; Резултати &nbsp;◆&nbsp;</span>
-      <span>Иновации &nbsp;◆&nbsp; Стратегия &nbsp;◆&nbsp; Растеж &nbsp;◆&nbsp; Трансформация &nbsp;◆&nbsp; Лидерство &nbsp;◆&nbsp; Резултати &nbsp;◆&nbsp;</span>
-    </div>
-  </div>
+    <p>© 2026 NexCorp. Всички права запазени. София, България.</p>
+  </footer>
 
-  <!-- HERO — ГРЕШКА: Няма <main> или id правилно свързан -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <p class="hero-tag">Бизнес Консултации &amp; Стратегия</p>
-      <h1>Изграждаме<br><span>Бъдещето</span><br>на Бизнеса</h1>
-      <p>Работим с водещи компании за трансформация на техните бизнес модели, оптимизация на процеси и постигане на устойчив растеж.</p>
-      <div class="hero-buttons">
-        <!-- ГРЕШКА: <div> вместо <button> -->
-        <div class="btn-primary" onclick="scrollToSection('services')">Нашите Услуги</div>
-        <div class="btn-secondary" onclick="scrollToSection('about')">Научи Повече</div>
-      </div>
-    </div>
-    <!-- ГРЕШКА: Декоративна SVG без aria-hidden -->
-    <svg style="position:absolute;right:60px;opacity:0.08;width:500px;height:500px;" viewBox="0 0 200 200">
-      <polygon points="100,10 190,190 10,190" fill="#e94560"/>
-    </svg>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat-item fade-in">
-      <div class="stat-num" id="stat1">0</div>
-      <div class="stat-label">Клиента</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-num" id="stat2">0</div>
-      <div class="stat-label">Години опит</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-num" id="stat3">0</div>
-      <div class="stat-label">Успеваемост</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-num" id="stat4">0</div>
-      <div class="stat-label">Награди</div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <section id="services" class="services">
-    <div class="section-header fade-in">
-      <h2>Нашите Услуги</h2>
-      <p>Предлагаме цялостни решения за корпоративна трансформация и растеж.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card fade-in" onclick="openServiceModal('Бизнес Анализ','Задълбочен анализ на вашите бизнес процеси, идентифициране на тесни места и възможности за оптимизация. Използваме доказани методологии и съвременни инструменти за събиране и анализ на данни.')">
-        <div class="service-icon">📊</div>
-        <h3>Бизнес Анализ</h3>
-        <p>Задълбочен анализ на вашите бизнес процеси и идентифициране на възможности за оптимизация.</p>
-      </div>
-      <div class="service-card fade-in" onclick="openServiceModal('Стратегическо Планиране','Разработване на дългосрочни стратегии за устойчив бизнес растеж и пазарно позициониране. Съчетаваме пазарни данни с дълбоко разбиране на вашата индустрия.')">
-        <div class="service-icon">🚀</div>
-        <h3>Стратегическо Планиране</h3>
-        <p>Разработване на дългосрочни стратегии за устойчив бизнес растеж и пазарно позициониране.</p>
-      </div>
-      <div class="service-card fade-in" onclick="openServiceModal('Дигитална Трансформация','Внедряване на съвременни технологии и дигитални решения за модернизация на бизнеса. От облачни инфраструктури до AI автоматизация — ние сме до вас на всяка стъпка.')">
-        <div class="service-icon">💡</div>
-        <h3>Дигитална Трансформация</h3>
-        <p>Внедряване на съвременни технологии и дигитални решения за модернизация на бизнеса.</p>
-      </div>
-      <div class="service-card fade-in" onclick="openServiceModal('M&A Консултации','Подкрепа при сливания, придобивания и корпоративни преструктурирания. Нашият екип осигурява due diligence, оценка на стойността и интеграционна стратегия.')">
-        <div class="service-icon">🤝</div>
-        <h3>M&amp;A Консултации</h3>
-        <p>Подкрепа при сливания, придобивания и корпоративни преструктурирания.</p>
-      </div>
-      <div class="service-card fade-in" onclick="openServiceModal('Финансово Оптимизиране','Анализ и оптимизация на финансови потоци, разходи и инвестиционни стратегии. Помагаме ви да постигнете максимална ефективност на капитала.')">
-        <div class="service-icon">📈</div>
-        <h3>Финансово Оптимизиране</h3>
-        <p>Анализ и оптимизация на финансови потоци, разходи и инвестиционни стратегии.</p>
-      </div>
-      <div class="service-card fade-in" onclick="openServiceModal('Международна Експанзия','Стратегии и подкрепа за навлизане на нови международни пазари. Разполагаме с мрежа от партньори в над 30 държави и познаваме местните регулаторни изисквания.')">
-        <div class="service-icon">🌍</div>
-        <h3>Международна Експанзия</h3>
-        <p>Стратегии и подкрепа за навлизане на нови международни пазари.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <div id="about" class="about-wrap">
-    <div class="about">
-      <div class="about-img fade-in">🏢</div>
-      <div class="about-text fade-in">
-        <!-- ГРЕШКА: h4 вместо h2 -->
-        <h4>18 Години на<br>Върхови Резултати</h4>
-        <p>NexCorp е водеща консултантска компания с присъствие в 12 държави. Нашият екип от над 200 специалисти работи ежедневно за постигане на измерими резултати.</p>
-        <p>Вярваме, че всеки бизнес предизвикателство е възможност за растеж и иновация. Нашият подход съчетава задълбочен анализ с практически приложими решения.</p>
-        <!-- ГРЕШКА: <div> вместо <button> -->
-        <div class="btn-primary" style="margin-top:16px;" onclick="openModal('history')">Нашата История</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TEAM -->
-  <section id="team" class="team">
-    <div class="section-header fade-in">
-      <h2>Нашият Екип</h2>
-      <p>Запознайте се с хората зад NexCorp.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card fade-in" onclick="openTeamModal('Александър Петров','CEO & Основател','Александър има 20 години опит в корпоративното консултиране. Преди NexCorp е заемал ръководни позиции в McKinsey и BCG. Магистър по бизнес администрация от INSEAD.')">
-        <div class="team-photo" style="background:linear-gradient(135deg,#0f3460,#e94560);">👤</div>
-        <h4>Александър Петров</h4>
-        <span>CEO &amp; Основател</span>
-      </div>
-      <div class="team-card fade-in" onclick="openTeamModal('Мария Иванова','Chief Strategy Officer','Мария ръководи стратегическото направление на NexCorp. Специализира в дигитална трансформация и пазарно позициониране за компании от Fortune 500.')">
-        <div class="team-photo" style="background:linear-gradient(135deg,#16213e,#0f3460);">👤</div>
-        <h4>Мария Иванова</h4>
-        <span>Chief Strategy Officer</span>
-      </div>
-      <div class="team-card fade-in" onclick="openTeamModal('Георги Стоянов','Head of Digital','Георги води дигиталната трансформация за клиентите на NexCorp. Има опит в имплементиране на ERP системи и AI решения в над 50 организации.')">
-        <div class="team-photo" style="background:linear-gradient(135deg,#1a1a2e,#e94560);">👤</div>
-        <h4>Георги Стоянов</h4>
-        <span>Head of Digital</span>
-      </div>
-      <div class="team-card fade-in" onclick="openTeamModal('Елена Димитрова','CFO','Елена управлява финансовото направление и M&A дейността на NexCorp. CFA чартър-холдер с опит в структурирането на сделки за над €2 милиарда.')">
-        <div class="team-photo" style="background:linear-gradient(135deg,#0f3460,#16213e);">👤</div>
-        <h4>Елена Димитрова</h4>
-        <span>CFO</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section id="contact" class="contact">
-    <div class="contact-inner">
-      <div class="section-header fade-in">
-        <h2>Свържете се с Нас</h2>
-        <p>Готови сме да обсъдим вашите бизнес нужди.</p>
-      </div>
-      <!-- ГРЕШКА: Без <form> таг, без <label> елементи -->
-      <div style="margin-top:50px;" class="fade-in">
-        <div class="form-row">
-          <div class="form-group">
-            <!-- ГРЕШКА: Без label -->
-            <input type="text" id="fname" placeholder="Вашето Име *">
-          </div>
-          <div class="form-group">
-            <input type="text" id="company" placeholder="Компания">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <!-- ГРЕШКА: type="text" вместо type="email" -->
-            <input type="text" id="email" placeholder="Имейл Адрес *">
-          </div>
-          <div class="form-group">
-            <input type="text" id="phone" placeholder="Телефон">
-          </div>
-        </div>
-        <div class="form-group">
-          <textarea id="message" placeholder="Вашето Съобщение *"></textarea>
-        </div>
-        <!-- ГРЕШКА: <div> вместо <button type="submit"> -->
-        <div class="submit-btn" onclick="submitForm()">Изпрати Съобщение</div>
-        <div class="success-msg" id="successMsg">✓ &nbsp; Съобщението е изпратено успешно! Ще се свържем с вас до 24 часа.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER — ГРЕШКА: <div> вместо <footer> -->
-  <div class="footer-wrap">
-    <ul class="footer-links">
-      <li><a href="#" onclick="openModal('privacy'); return false;">Поверителност</a></li>
-      <li><a href="#" onclick="openModal('terms'); return false;">Условия</a></li>
-      <li><a href="#" onclick="openModal('careers'); return false;">Кариери</a></li>
-      <li><a href="#" onclick="openModal('media'); return false;">Медия</a></li>
-    </ul>
-    <p>© 2026 NexCorp. Всички права запазени. &nbsp;|&nbsp; Sofia, Bulgaria</p>
-  </div>
-
-  <!-- ===== MODALS ===== -->
-
-  <!-- Service Modal -->
-  <div class="modal-overlay" id="serviceModal">
-    <div class="modal-box">
-      <!-- ГРЕШКА: Без aria-label на затварящия бутон -->
-      <button class="modal-close" onclick="closeModal('serviceModal')">✕</button>
-      <h3 id="serviceModalTitle"></h3>
-      <p id="serviceModalText"></p>
-      <div class="btn-primary" onclick="scrollToSection('contact'); closeModal('serviceModal');">Запитване</div>
-    </div>
-  </div>
-
-  <!-- Team Modal -->
-  <div class="modal-overlay" id="teamModal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal('teamModal')">✕</button>
-      <div style="font-size:60px;margin-bottom:16px;">👤</div>
-      <h3 id="teamModalName"></h3>
-      <p style="color:#e94560;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;" id="teamModalRole"></p>
-      <p id="teamModalBio"></p>
-    </div>
-  </div>
-
-  <!-- Generic Modal (History, Privacy, etc.) -->
-  <div class="modal-overlay" id="genericModal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal('genericModal')">✕</button>
-      <h3 id="genericModalTitle"></h3>
-      <p id="genericModalText"></p>
-    </div>
+  <div class="accessibility-tools" aria-label="Инструменти за достъпност">
+    <button type="button" onclick="increaseFont()">Увеличи текст</button>
+    <button type="button" onclick="decreaseFont()">Намали текст</button>
+    <button type="button" onclick="toggleContrast()">Висок контраст</button>
   </div>
 
   <script>
-    // ─── SCROLL TO SECTION ───────────────────────────────────────
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    let currentFontSize = 18;
+
+    function increaseFont() {
+      currentFontSize += 2;
+      document.body.style.fontSize = currentFontSize + "px";
     }
 
-    // ─── MODALS ──────────────────────────────────────────────────
-    function openServiceModal(title, text) {
-      document.getElementById('serviceModalTitle').textContent = title;
-      document.getElementById('serviceModalText').textContent = text;
-      document.getElementById('serviceModal').classList.add('open');
-    }
-
-    function openTeamModal(name, role, bio) {
-      document.getElementById('teamModalName').textContent = name;
-      document.getElementById('teamModalRole').textContent = role;
-      document.getElementById('teamModalBio').textContent = bio;
-      document.getElementById('teamModal').classList.add('open');
-    }
-
-    const genericContent = {
-      history: {
-        title: 'Нашата История',
-        text: 'NexCorp е основана през 2008 г. от Александър Петров с визията да създаде консултантска компания, която поставя клиента в центъра на всяко решение. За 18 години израснахме от 5-членен екип до над 200 специалисти в 12 държави, обслужвайки повече от 340 клиента в различни индустрии.'
-      },
-      privacy: {
-        title: 'Политика за Поверителност',
-        text: 'NexCorp събира и обработва лични данни в съответствие с GDPR и приложимото българско законодателство. Данните се използват единствено за предоставяне на заявени услуги и не се предоставят на трети страни без изричното ви съгласие. За въпроси: privacy@nexcorp.bg'
-      },
-      terms: {
-        title: 'Общи Условия',
-        text: 'Използването на уебсайта на NexCorp е подчинено на настоящите Общи условия. NexCorp си запазва правото да променя условията по всяко време. Продължаването на използването на сайта след промени представлява приемане на новите условия.'
-      },
-      careers: {
-        title: 'Кариери в NexCorp',
-        text: 'Търсим амбициозни специалисти, които искат да правят реална разлика. Отворени позиции: Senior Business Analyst, Strategy Consultant, Digital Transformation Lead, Financial Advisor. Изпратете CV на: careers@nexcorp.bg'
-      },
-      media: {
-        title: 'Медия & Пресцентър',
-        text: 'За медийни запитвания, интервюта и прес материали, моля свържете се с нашия PR екип на press@nexcorp.bg или на телефон +359 2 900 1800. Разполагаме с лого пакет и биографии на ръководния екип.'
+    function decreaseFont() {
+      if (currentFontSize > 16) {
+        currentFontSize -= 2;
+        document.body.style.fontSize = currentFontSize + "px";
       }
-    };
-
-    function openModal(key) {
-      const content = genericContent[key];
-      if (!content) return;
-      document.getElementById('genericModalTitle').textContent = content.title;
-      document.getElementById('genericModalText').textContent = content.text;
-      document.getElementById('genericModal').classList.add('open');
     }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
+    function toggleContrast() {
+      document.body.classList.toggle("high-contrast");
     }
 
-    // Close on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', function(e) {
-        if (e.target === this) this.classList.remove('open');
-      });
-    });
+    function submitForm(event) {
+      event.preventDefault();
 
-    // Close on Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
-      }
-    });
+      const name = document.getElementById("fname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
 
-    // ─── FORM SUBMIT ─────────────────────────────────────────────
-    function submitForm() {
-      const name = document.getElementById('fname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const msg = document.getElementById('message').value.trim();
+      const successMsg = document.getElementById("successMsg");
+      const errorMsg = document.getElementById("errorMsg");
 
-      if (!name || !email || !msg) {
-        // ГРЕШКА: alert() вместо достъпно inline съобщение с aria-live
-        alert('Моля, попълнете задължителните полета: Име, Имейл и Съобщение.');
+      successMsg.style.display = "none";
+      errorMsg.style.display = "none";
+
+      if (!name || !email || !message) {
+        errorMsg.style.display = "block";
         return;
       }
 
-      // Simulate send
-      document.querySelector('.submit-btn').textContent = 'Изпращане...';
-      setTimeout(() => {
-        document.querySelector('.submit-btn').textContent = 'Изпрати Съобщение';
-        document.getElementById('successMsg').classList.add('show');
-        document.getElementById('fname').value = '';
-        document.getElementById('company').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
-        document.getElementById('message').value = '';
-        setTimeout(() => document.getElementById('successMsg').classList.remove('show'), 5000);
-      }, 1200);
+      successMsg.style.display = "block";
+      event.target.reset();
     }
-
-    // ─── COUNTER ANIMATION ───────────────────────────────────────
-    function animateCounter(el, target, suffix) {
-      let current = 0;
-      const step = Math.ceil(target / 60);
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = current + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 25);
-    }
-
-    let countersStarted = false;
-    function startCounters() {
-      if (countersStarted) return;
-      countersStarted = true;
-      animateCounter(document.getElementById('stat1'), 340, '+');
-      animateCounter(document.getElementById('stat2'), 18, '');
-      animateCounter(document.getElementById('stat3'), 92, '%');
-      animateCounter(document.getElementById('stat4'), 50, '+');
-    }
-
-    // ─── INTERSECTION OBSERVER (scroll animations) ───────────────
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          if (entry.target.closest('.stats')) startCounters();
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
